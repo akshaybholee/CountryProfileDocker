@@ -1,6 +1,6 @@
 FROM rocker/r-base:latest
 
-LABEL maintainer="Peter Solymos <peter@analythium.io>"
+LABEL maintainer="IEC <IEC>"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
