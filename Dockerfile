@@ -12,6 +12,33 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgdal-dev\
     && rm -rf /var/lib/apt/lists/*
 
+RUN R -e 'install.packages(c(\
+              "shinydashboard",  \
+              "shinyjs", \
+                "formattable", \
+                "dplyr", \
+                "stringr", \
+                "sqldf", \
+                "echarts4r", \
+                "chorddiag", \
+                "scales", \
+                "highcharter", \
+                "DT", \
+                "plyr", \
+                "leaflet", \
+                "rworldmap", \
+                "leaflet.extras", \
+                "spatialEco", \
+                "leaflegend", \
+                "odbc", \
+                "pool", \
+                "shinydashboardPlus", \
+                "waiter", \
+                "feather" \
+            ), \
+            repos="https://packagemanager.rstudio.com/cran/__linux__/focal/2021-04-23"\
+          )'
+
 RUN install.r shiny
 
 RUN echo "local(options(shiny.port = as.numeric(Sys.getenv('PORT')), shiny.host = '0.0.0.0'))" > /usr/lib/R/etc/Rprofile.site
