@@ -17,17 +17,27 @@ RUN apt-get update && apt-get install -y \
 # Change the packages list to suit your needs
 RUN R -e 'install.packages(c(\
               "shiny", \
-              "shinydashboard", \"shinyjs",\
-                "renv",\"formattable",\
-                "dplyr",\"stringr",\
-                "sqldf",\"echarts4r",\
-                "chorddiag",\"scales",\
-                "highcharter",\"DT",\
-                "plyr",\"leaflet",\
-                "rworldmap",\"leaflet.extras",\
-                "spatialEco",\"leaflegend",\
-                "odbc",\"pool",\
-                "shinydashboardPlus",\"waiter",\
+              "shinydashboard", \
+              "shinyjs",\
+                "formattable",\
+                "dplyr",\
+                "stringr",\
+                "sqldf",\
+                "echarts4r",\
+                "chorddiag",\
+                "scales",\
+                "highcharter",\
+                "DT",\
+                "plyr",\
+                "leaflet",\
+                "rworldmap",\
+                "leaflet.extras",\
+                "spatialEco",\
+                "leaflegend",\
+                "odbc",\
+                "pool",\
+                "shinydashboardPlus",\
+                "waiter",\
                 "feather"\
             ), \
             repos="https://packagemanager.rstudio.com/cran/__linux__/focal/2021-04-23"\
