@@ -1,7 +1,6 @@
 library(shiny, warn.conflicts = FALSE)
 library(shinydashboard, warn.conflicts = FALSE)
 library(shinyjs, warn.conflicts = FALSE)
-library(renv, warn.conflicts = FALSE)
 library(formattable, warn.conflicts = FALSE)
 library(dplyr, warn.conflicts = FALSE)
 library(stringr, warn.conflicts = FALSE)
