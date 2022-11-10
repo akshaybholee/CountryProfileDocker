@@ -1,4 +1,3 @@
-FROM rocker/r-base:latest
 FROM ubuntu:16.04
 
 LABEL maintainer="IEC <IEC>"
@@ -20,7 +19,7 @@ RUN apt-get update && ACCEPT_EULA=Y apt-get install -y mssql-tools
 RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 RUN /bin/bash -c "source ~/.bashrc"
 
-
+FROM rocker/r-base:latest
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     libcurl4-gnutls-dev \
