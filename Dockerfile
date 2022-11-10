@@ -10,6 +10,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libssl-dev \
     libssh2-1-dev \
     libgdal-dev\
+    https://packages.microsoft.com/ubuntu/16.04/prod/pool/main/m/msodbcsql17/msodbcsql17_17.4.2.1-1_amd64.deb\
+https://packages.microsoft.com/ubuntu/16.04/prod/pool/main/m/mssql-tools/mssql-tools_17.4.1.1-1_amd64.deb\
     unixodbc\
     unixodbc-dev\
     && rm -rf /var/lib/apt/lists/*
