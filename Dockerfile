@@ -41,6 +41,7 @@ RUN Rscript -e "install.packages('leaflet.extras')"
 RUN Rscript -e "install.packages('spatialEco')"
 RUN Rscript -e "install.packages('leaflegend')"
 RUN Rscript -e "install.packages('httr')"
+RUN Rscript -e "install.packages('DBI')"
 
 
 RUN install.r shiny
