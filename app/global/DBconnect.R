@@ -8,7 +8,7 @@
 
 # use this connection when deploying application to shinyapps.io
 con <- dbPool(odbc(),
-              Driver = "./psqlodbcw.so",
+              Driver = "FreeTDS",
               Server = "iecproduction.database.windows.net",
               Database = "IECPRODDB",
               UID = "IECPROD",
