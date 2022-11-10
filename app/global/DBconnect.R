@@ -17,7 +17,7 @@ url <- httr::parse_url(Sys.getenv("DATABASE_URL"))
 #               port = 1433)
 
 con <- dbPool(odbc(),
-              Driver = DBI::dbDriver("FreeTDS"),
+              Driver = "ODBC Driver 17 for SQL Server",
               Server = url$hostname,
               Database = url$path,
               UID = url$user,
