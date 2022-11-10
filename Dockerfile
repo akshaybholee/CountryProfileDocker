@@ -15,21 +15,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN R -e 'install.packages(c(\
               "shinydashboard",  \
               "shinyjs", \
-                "formattable", \
                 "dplyr", \
                 "stringr", \
                 "sqldf", \
-                "echarts4r", \
-                "chorddiag", \
                 "scales", \
-                "highcharter", \
                 "DT", \
                 "plyr", \
-                "leaflet", \
-                "rworldmap", \
-                "leaflet.extras", \
-                "spatialEco", \
-                "leaflegend", \
                 "odbc", \
                 "pool", \
                 "shinydashboardPlus", \
@@ -40,6 +31,14 @@ RUN R -e 'install.packages(c(\
           )'
 
 RUN Rscript -e "install.packages('formattable')"
+RUN Rscript -e "install.packages('echarts4r')"
+RUN Rscript -e "install.packages('highcharter')"
+RUN Rscript -e "install.packages('leaflet')"
+RUN Rscript -e "install.packages('rworldmap')"
+RUN Rscript -e "install.packages('leaflet.extras')"
+RUN Rscript -e "install.packages('spatialEco')"
+RUN Rscript -e "install.packages('leaflegend')"
+RUN installGithub.r mattflor/chorddiag
 
 RUN install.r shiny
 
