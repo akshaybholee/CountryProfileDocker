@@ -26,5 +26,5 @@ url <- httr::parse_url(Sys.getenv("DATABASE_URL"))
 
 
 
-con <- odbcDriverConnect(connection = "Driver=FreeTDS;TDS_Version=8.0;Server=iecproduction.database.windows.net;Port=1433;Database=IECPRODDB;Uid=IECPROD;Pwd=International123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;")
+con <- RODBC::odbcDriverConnect(connection = "Driver=FreeTDS;TDS_Version=8.0;Server=iecproduction.database.windows.net;Port=1433;Database=IECPRODDB;Uid=IECPROD;Pwd=International123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;")
 

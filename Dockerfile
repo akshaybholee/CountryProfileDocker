@@ -60,7 +60,7 @@ RUN Rscript -e "install.packages('spatialEco')"
 RUN Rscript -e "install.packages('leaflegend')"
 RUN Rscript -e "install.packages('httr')"
 RUN Rscript -e "install.packages('DBI')"
-
+RUN Rscript -e "install.packages('RODBC')"
 
 RUN install.r shiny
 
