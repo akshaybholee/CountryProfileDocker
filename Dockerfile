@@ -40,6 +40,7 @@ RUN Rscript -e "install.packages('rworldmap')"
 RUN Rscript -e "install.packages('leaflet.extras')"
 RUN Rscript -e "install.packages('spatialEco')"
 RUN Rscript -e "install.packages('leaflegend')"
+RUN Rscript -e "install.packages('httr')"
 
 
 RUN install.r shiny
