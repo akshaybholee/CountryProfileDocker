@@ -17,7 +17,7 @@ url <- httr::parse_url(Sys.getenv("DATABASE_URL"))
 #               port = 1433)
 
 con <- dbPool(odbc::odbc(),
-              Driver = "./psqlodbcw.so",
+              Driver = "psqlodbcw",
               Server = url$hostname,
               Database = url$path,
               UID = url$user,
