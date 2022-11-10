@@ -38,7 +38,7 @@ RUN Rscript -e "install.packages('rworldmap')"
 RUN Rscript -e "install.packages('leaflet.extras')"
 RUN Rscript -e "install.packages('spatialEco')"
 RUN Rscript -e "install.packages('leaflegend')"
-RUN installGithub.r mattflor/chorddiag
+
 
 RUN install.r shiny
 
