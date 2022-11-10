@@ -104,7 +104,7 @@ Macroeconomic_server <-
                        print("df_Macroeconomic")
                        reporter_iso <- reporter_iso_sel()
                        
-                       df_Macro <- sqlQuery(
+                       df_Macro <- dbGetQuery(
                          con,
                          paste(
                            "SELECT[Year]
@@ -125,7 +125,7 @@ Macroeconomic_server <-
                    
                    df_narrative <- reactive(
                      {
-                       sqlQuery(
+                       dbGetQuery(
                          con,
                      
                            "select Text_Category, HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01'")
@@ -315,7 +315,7 @@ Macroeconomic_server <-
                        if (reporter() == 'United States of America' )
                        {
                          df_Exchange_narrative <- df_narrative() %>% filter(Text_Category == 'Exchange_USA')  %>% select(c('HTML_text'))
-                           # sqlQuery(
+                           # dbGetQuery(
                            #   con,
                            #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Exchange_USA'"
                            # )
@@ -325,7 +325,7 @@ Macroeconomic_server <-
                        else
                        {
                          df_Exchange_narrative <- df_narrative() %>% filter(Text_Category == 'Exchange_rate')  %>% select(c('HTML_text'))
-                           # sqlQuery(
+                           # dbGetQuery(
                            #   con,
                            #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Exchange_rate'"
                            # )
@@ -541,7 +541,7 @@ Macroeconomic_server <-
                          
                        {
                          df_CurrentAcc_narrative <- df_narrative() %>% filter(Text_Category == 'Current_Acc_neg')  %>% select(c('HTML_text'))
-                           # sqlQuery(
+                           # dbGetQuery(
                            #   con,
                            #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Current_Acc_neg'"
                            # )
@@ -564,7 +564,7 @@ Macroeconomic_server <-
                        else {
                          
                          df_CurrentAcc_narrative <- df_narrative() %>% filter(Text_Category == 'Current_Acc')  %>% select(c('HTML_text'))
-                           # sqlQuery(
+                           # dbGetQuery(
                            #   con,
                            #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Current_Acc'"
                            # )
@@ -786,7 +786,7 @@ Macroeconomic_server <-
                        
                        
                        df_FDI_narrative <- df_narrative() %>% filter(Text_Category == 'FDI')  %>% select(c('HTML_text'))
-                           # sqlQuery(
+                           # dbGetQuery(
                            #   con,
                            #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'FDI_neg'"
                            # )
@@ -812,7 +812,7 @@ Macroeconomic_server <-
                        # {
                        #   
                        #   df_FDI_narrative <- df_narrative() %>% filter(Text_Category == 'FDI_neg')  %>% select(c('HTML_text'))
-                       #     # sqlQuery(
+                       #     # dbGetQuery(
                        #     #   con,
                        #     #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'FDI_neg'"
                        #     # )
@@ -836,7 +836,7 @@ Macroeconomic_server <-
                        #   
                        #   
                        #   df_FDI_narrative <- df_narrative() %>% filter(Text_Category == 'FDI_pos')  %>% select(c('HTML_text'))
-                       #     # sqlQuery(
+                       #     # dbGetQuery(
                        #     #   con,
                        #     #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'FDI_pos'"
                        #     # )
@@ -861,7 +861,7 @@ Macroeconomic_server <-
                        #   
                        #   
                        #   df_FDI_narrative <- df_narrative() %>% filter(Text_Category == 'FDI')  %>% select(c('HTML_text'))
-                       #     # sqlQuery(
+                       #     # dbGetQuery(
                        #     #   con,
                        #     #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'FDI'"
                        #     # )
@@ -1012,7 +1012,7 @@ Macroeconomic_server <-
                        
                        
                        df_RealInt_narrative <- df_narrative() %>% filter(Text_Category == 'Real_Interest')  %>% select(c('HTML_text'))
-                         # sqlQuery(
+                         # dbGetQuery(
                          #   con,
                          #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Real_Interest'"
                          # )
@@ -1195,7 +1195,7 @@ Macroeconomic_server <-
                        
                        
                        df_GDP_narrative <- df_narrative() %>% filter(Text_Category == 'GDP_Per_Capita')  %>% select(c('HTML_text'))
-                         # sqlQuery(
+                         # dbGetQuery(
                          #   con,
                          #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'GDP_Per_Capita'"
                          # )
@@ -1387,7 +1387,7 @@ Macroeconomic_server <-
                        
                        
                        df_GDP_narrative <- df_narrative() %>% filter(Text_Category == 'GDP')  %>% select(c('HTML_text'))
-                         # sqlQuery(
+                         # dbGetQuery(
                          #   con,
                          #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'GDP'"
                          # )

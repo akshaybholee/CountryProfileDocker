@@ -42,7 +42,7 @@ services_performance_server <-
     moduleServer(id,
                  function(input, output, session) {
                    df_services_performance <- reactive({
-                     sqlQuery(
+                     dbGetQuery(
                        con,
                        paste0(
                          "SELECT [Country_ISO],[Description], Short_Description,
@@ -301,7 +301,7 @@ services_performance_server <-
                        XGROWTH2 <-
                          paste0(round(df_mydata$Export_Growth[[1]] * 100, 2), '%')
                        
-                       df_narrative <- sqlQuery(
+                       df_narrative <- dbGetQuery(
                          con,
                          "select HTML_text
                                 from Dashboard_Narrative

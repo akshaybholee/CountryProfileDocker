@@ -43,7 +43,7 @@ trade_performance_server <-
                      reactive({
                        reporter_iso <- reporter_iso_sel()
                        
-                       df_tp <- sqlQuery(
+                       df_tp <- dbGetQuery(
                          con,
                          paste(
                            "select Country_ISO,
@@ -295,7 +295,7 @@ group by Country_ISO, Sector_Description,Year",
                          paste0(round(df_mydata$y[[1]] * 100, 2), '%')
                        
                        df_narrative <-
-                         sqlQuery(
+                         dbGetQuery(
                            con,
                            "select text_category, HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'TP01'"
                          )

@@ -67,7 +67,7 @@ tradeingoods_server <-
                    
                    #get year of data
                    year <- reactive({
-                     sqlQuery(
+                     dbGetQuery(
                        con,
                        paste0(
                          "select Latest_Year from Tracking_Trade_Data_Availability where Reporter_ISO = '",
@@ -78,7 +78,7 @@ tradeingoods_server <-
                    }) %>% bindCache(reporter_iso_sel())
                    
                    df_top_partner_load <- reactive({
-                     sqlQuery(
+                     dbGetQuery(
                        con,
                        paste0(
                          "select top 15 Partner_iso Country_ISO, sum(Trade_value) tradevalue
@@ -103,7 +103,7 @@ tradeingoods_server <-
                      else if (is.na(as.numeric(sectorclick$var)) &
                               is.na(as.numeric(treemapclick$var)))
                      {
-                       df_partner <-  sqlQuery(
+                       df_partner <-  dbGetQuery(
                          con,
                          paste0(
                            "select top 15 Partner_iso Country_ISO, sum(Trade_value) tradevalue
@@ -121,7 +121,7 @@ tradeingoods_server <-
                        )
                      }
                      else if (nchar(treemapclick$var) == 2) {
-                       df_partner <-  sqlQuery(
+                       df_partner <-  dbGetQuery(
                          con,
                          paste0(
                            "select top 15 Partner_iso Country_ISO, sum(Trade_value) tradevalue
@@ -139,7 +139,7 @@ tradeingoods_server <-
                        )
                      }
                      else if (nchar(treemapclick$var) == 4) {
-                       df_partner <-  sqlQuery(
+                       df_partner <-  dbGetQuery(
                          con,
                          paste0(
                            "select top 15 Partner_iso Country_ISO, sum(Trade_value) tradevalue
@@ -157,7 +157,7 @@ tradeingoods_server <-
                        )
                      }
                      else if (nchar(treemapclick$var) == 6) {
-                       df_partner <-  sqlQuery(
+                       df_partner <-  dbGetQuery(
                          con,
                          paste0(
                            "select top 15 Partner_iso Country_ISO, sum(Trade_value) tradevalue
@@ -193,7 +193,7 @@ tradeingoods_server <-
                    
                    
                    df_product_load <- reactive({
-                    x <- sqlQuery(
+                    x <- dbGetQuery(
                        con,
                        paste0(
                          "select left(Product_Code,2) HS2,s.sector_description sector, sum(Trade_value) trade_value
@@ -253,7 +253,7 @@ tradeingoods_server <-
                      }
                      else if (nchar(treemapclick$var) == 2)
                      {
-                      y <- sqlQuery(
+                      y <- dbGetQuery(
                          con,
                          paste0(
                            "select left(Product_Code,4) HS4,sum(Trade_value) trade_value
@@ -277,7 +277,7 @@ tradeingoods_server <-
                      }
                      else if (nchar(treemapclick$var) == 4)
                      {
-                      y <- sqlQuery(
+                      y <- dbGetQuery(
                          con,
                          paste0(
                            "select Product_Code ,sum(Trade_value) trade_value
@@ -301,7 +301,7 @@ tradeingoods_server <-
                      }
                      else if (nchar(treemapclick$var) == 6)
                      {
-                     y <-  sqlQuery(
+                     y <-  dbGetQuery(
                          con,
                          paste0(
                            "select Product_Code ,sum(Trade_value) trade_value
@@ -602,13 +602,13 @@ tradeingoods_server <-
                    
                    # Output the narrative text on the screen
                    
-                   df_narrative_1 <- sqlQuery(
+                   df_narrative_1 <- dbGetQuery(
                      con,
                      "select text_category, HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'TIG01'
                            and text_category = 'Text1'"
                    )
                    
-                   df_narrative_2 <- sqlQuery(
+                   df_narrative_2 <- dbGetQuery(
                      con,
                      "select text_category, HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'TIG01'
                            and text_category = 'Text2'"
