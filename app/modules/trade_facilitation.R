@@ -112,7 +112,7 @@ trade_facilitation_server <-
                  function(input, output, session) {
                    # Connect to Database set SQL Table to Data Frame
                    df_trade_facilitation <- reactive({
-                     dbGetQuery(
+                     sqlQuery(
                        con,
                        paste0(
                          "SELECT [Country_ISO],[Year],[Index_Description],[Index_Value]
@@ -405,7 +405,7 @@ trade_facilitation_server <-
                        
                        
                        # Database connection for services text data
-                       df_narrative <- dbGetQuery(
+                       df_narrative <- sqlQuery(
                          con,
                          "select HTML_text
                           from Dashboard_Narrative

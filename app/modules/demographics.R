@@ -205,7 +205,7 @@ demographics_server <- function(id, reporter_iso_sel) {
                  df_demography_data <- reactive({
                    reporter_iso <- reporter_iso_sel()
                    
-                   df_demo <- dbGetQuery(
+                   df_demo <- sqlQuery(
                      con,
                      paste(
                        " select [Country_ISO]

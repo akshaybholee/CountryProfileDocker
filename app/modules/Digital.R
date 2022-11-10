@@ -97,7 +97,7 @@ Digital_server <-
                      reactive({
                        reporter_iso <- reporter_iso_sel()
                        
-                       df_Digital_card <- dbGetQuery(
+                       df_Digital_card <- sqlQuery(
                          con,
                          paste(
                            "SELECT [Country_ISO]
@@ -370,7 +370,7 @@ top: 76px;
                      reactive({
                        reporter_iso <- reporter_iso_sel()
                        
-                       df_STRI <- dbGetQuery(
+                       df_STRI <- sqlQuery(
                          con,
                          paste(
                            "SELECT [Country_ISO],Year, [Index_Description]
@@ -555,7 +555,7 @@ top: 76px;
                        # lastcell <-tail(df_cat_0$Index_Description, n = 1)
                        
                        df_STRI_narrative <- 
-                         dbGetQuery(
+                         sqlQuery(
                            con,
                            "select text_category, HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'D01'"
                          )

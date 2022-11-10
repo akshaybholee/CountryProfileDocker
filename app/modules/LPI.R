@@ -40,7 +40,7 @@ LPI_server <-
                      reactive({
                        reporter_iso <- reporter_iso_sel()
                        
-                       df_LPI <- dbGetQuery(
+                       df_LPI <- sqlQuery(
                          con,
                          paste(
                            "SELECT [Year]
@@ -189,7 +189,7 @@ LPI_server <-
                        
                        
                        df_LPI_narrative <-
-                         dbGetQuery(
+                         sqlQuery(
                            con,
                            "select text_category, HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'LPI01'"
                          )
