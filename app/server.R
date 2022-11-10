@@ -60,29 +60,29 @@ server <- shinyServer(function(input, output, session) {
   #### Logistic performance ####
   
   #### Bilateral Trade ####
-  bilateral_server(
-    id = "bilateral",
-    reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
-    reporter = reporter_iso_sel$reporter,
-    mycolor = mycolor
-  )
+  # bilateral_server(
+  #   id = "bilateral",
+  #   reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
+  #   reporter = reporter_iso_sel$reporter,
+  #   mycolor = mycolor
+  # )
   #### Bilateral Trade ####
   
   #### Trade Agreements ####
-  trade_agreement_server(
-    id = "agreement",
-    reporter_iso_sel = reporter_iso_sel$reporter_iso_sel
-  )
+  # trade_agreement_server(
+  #   id = "agreement",
+  #   reporter_iso_sel = reporter_iso_sel$reporter_iso_sel
+  # )
   #### Trade Agreements ####
   
   #### Trade in services ####
-  tradeinservices_server(
-    id = "tradeinservices",
-    reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
-    reporter = reporter_iso_sel$reporter,
-    mycolor = mycolor,
-    services_tradeflow = services_tradeflow
-  )
+  # tradeinservices_server(
+  #   id = "tradeinservices",
+  #   reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
+  #   reporter = reporter_iso_sel$reporter,
+  #   mycolor = mycolor,
+  #   services_tradeflow = services_tradeflow
+  # )
   #### Trade in services ####
   
   #### Services performance ####
