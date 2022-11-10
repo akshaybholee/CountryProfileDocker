@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgdal-dev\
     unixodbc\
     unixodbc-dev\
+    msodbcsql17\
+    mssql-tools_17\
     && rm -rf /var/lib/apt/lists/*
 
 RUN R -e 'install.packages(c(\
