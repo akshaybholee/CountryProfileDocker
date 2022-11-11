@@ -84,7 +84,7 @@ ui <-
                  #End of UI Logistic Performance
                  
                  # #UI for Bilateral Trade
-                 # bilateral_ui(id = "bilateral"),
+                 bilateral_ui(id = "bilateral"),
                  #End of UI Bilateral Trade
                  
                  #UI for Trade Agreements
@@ -100,7 +100,7 @@ ui <-
                  #End of UI Services Performance
                  #
                  #UI for Digital
-                 # Digital_ui(id = "Digital"),
+                 Digital_ui(id = "Digital"),
                  #End of UI Digital
                  
                  #UI for Digital

@@ -60,12 +60,12 @@ server <- shinyServer(function(input, output, session) {
   #### Logistic performance ####
   
   #### Bilateral Trade ####
-  # bilateral_server(
-  #   id = "bilateral",
-  #   reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
-  #   reporter = reporter_iso_sel$reporter,
-  #   mycolor = mycolor
-  # )
+  bilateral_server(
+    id = "bilateral",
+    reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
+    reporter = reporter_iso_sel$reporter,
+    mycolor = mycolor
+  )
   #### Bilateral Trade ####
   
   #### Trade Agreements ####
@@ -96,12 +96,12 @@ server <- shinyServer(function(input, output, session) {
   
   
   #### Digital ####
-  # Digital_server(
-  #   id = "Digital",
-  #   reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
-  #   reporter = reporter_iso_sel$reporter,
-  #   mycolor = mycolor
-  # )
+  Digital_server(
+    id = "Digital",
+    reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
+    reporter = reporter_iso_sel$reporter,
+    mycolor = mycolor
+  )
   #### Digital ####
   
   # ### Digital - Trade Facilitation ####
