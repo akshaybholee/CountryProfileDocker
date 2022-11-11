@@ -96,12 +96,12 @@ server <- shinyServer(function(input, output, session) {
   
   
   #### Digital ####
-  Digital_server(
-    id = "Digital",
-    reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
-    reporter = reporter_iso_sel$reporter,
-    mycolor = mycolor
-  )
+  # Digital_server(
+  #   id = "Digital",
+  #   reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
+  #   reporter = reporter_iso_sel$reporter,
+  #   mycolor = mycolor
+  # )
   #### Digital ####
   
   # ### Digital - Trade Facilitation ####
