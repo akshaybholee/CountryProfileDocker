@@ -10,7 +10,7 @@
 print(odbc::odbcListDrivers())
 
 con <- dbPool(odbc(),
-              Driver = "SQLServer",
+              Driver = "ODBC Driver 17 for SQL Server",
               Server = "iecproduction.database.windows.net",
               Database = "IECPRODDB",
               UID = "IECPROD",
