@@ -60,7 +60,8 @@ RUN Rscript -e "install.packages('devtools')"
 
 RUN installGithub.r mattflor/chorddiag
 
-RUN installGithub.r jeffreyevans/spatialEco
+RUN install2.r --error \
+                spatialEco\
 
 RUN echo "local(options(shiny.port = as.numeric(Sys.getenv('PORT')), shiny.host = '0.0.0.0'))" > /usr/lib/R/etc/Rprofile.site
 
