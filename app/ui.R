@@ -1,15 +1,17 @@
 #Libraries
 source("global/libraries.R")
 
+print("connect to DB")
 #### Connect to Production database #####
 source("global/DBconnect.R")
 #### End Connect to database #####
 
+print("call modules")
 #### call modules #####
 list.files("modules") %>% purrr::map(~ source(paste0("modules/", .)))
 #### call modules #####
 
-
+print("dataframes")
 #### Initialize global dataframe ####
 source("global/dataframe.R")
 #### End Initialize global dataframe ####
