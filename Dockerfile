@@ -14,6 +14,8 @@ RUN curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt
 RUN apt-get update -y
 RUN ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev mssql-tools
 
+
+FROM rocker/r-base:latest
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     libcurl4-gnutls-dev \
@@ -44,8 +46,6 @@ RUN R -e 'install.packages(c(\
             repos="https://packagemanager.rstudio.com/cran/__linux__/focal/2021-04-23"\
           )'
 
-RUN add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran42/'
-RUN apt-get update -y && apt-get install -y r-base
 
 RUN Rscript -e "install.packages('formattable')"
 RUN Rscript -e "install.packages('echarts4r')"
@@ -56,10 +56,6 @@ RUN Rscript -e "install.packages('leaflet.extras')"
 RUN Rscript -e "install.packages('spatialEco')"
 RUN Rscript -e "install.packages('leaflegend')"
 RUN Rscript -e "install.packages('shiny')"
-
-RUN R -e "install.packages('echarts4r',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-RUN R -e "install.packages('highcharter',dependencies=TRUE, repos='http://cran.rstudio.com/')"
-
 
 
 
