@@ -59,6 +59,7 @@ RUN Rscript -e "install.packages('shiny')"
 RUN Rscript -e "install.packages('devtools')"
 RUN Rscript -e "install.packages('spatialEco', repos = 'http://cran.us.rproject.org')"
 
+RUN Rscript -e "library(devtools)"
 RUN R -q -e 'devtools::install_github("mattflor/chorddiag")'
 
 
