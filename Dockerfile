@@ -6,7 +6,7 @@ RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 RUN apt-get update -y && apt-get install -y build-essential curl libssl1.0.0 libssl-dev gnupg2 software-properties-common dirmngr apt-transport-https apt-utils lsb-release ca-certificates
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-RUN add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
+RUN add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/'
 RUN apt-get update -y && apt-get install -y r-base
 
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
@@ -15,7 +15,6 @@ RUN apt-get update -y
 RUN ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev mssql-tools
 
 
-FROM rocker/r-base:latest
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     libcurl4-gnutls-dev \
