@@ -103,5 +103,4 @@ RUN apt-get -y install freetds-dev
 RUN apt-get -y install freetds-bin
 RUN apt-get -y install tdsodbc
 RUN apt-get -y install --reinstall build-essential
-RUN apk add build-base
-RUN apt-get clean
+
