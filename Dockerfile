@@ -65,7 +65,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     libudunits2-dev \
     libgeos-dev \
-    libproj-dev \
+    libproj-dev
 
 
 RUN install2.r --error \
