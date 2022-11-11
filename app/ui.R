@@ -88,11 +88,11 @@ ui <-
                  #End of UI Bilateral Trade
                  
                  #UI for Trade Agreements
-                 # trade_agreement_ui(id = "agreement"),
+                 trade_agreement_ui(id = "agreement"),
                  #End of UI Trade Agreements
                  
                  #UI for Trade in services
-                 # tradeinservices_ui(id = "tradeinservices"),
+                 tradeinservices_ui(id = "tradeinservices"),
                  #End of UI Trade in services
                  
                  #UI for Services Performance
