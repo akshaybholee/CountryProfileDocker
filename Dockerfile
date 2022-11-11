@@ -44,6 +44,9 @@ RUN R -e 'install.packages(c(\
             repos="https://packagemanager.rstudio.com/cran/__linux__/focal/2021-04-23"\
           )'
 
+RUN add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran42/'
+RUN apt-get update -y && apt-get install -y r-base
+
 RUN Rscript -e "install.packages('formattable')"
 RUN Rscript -e "install.packages('echarts4r')"
 RUN Rscript -e "install.packages('highcharter')"
