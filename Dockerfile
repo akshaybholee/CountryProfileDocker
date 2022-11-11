@@ -53,15 +53,16 @@ RUN Rscript -e "install.packages('highcharter')"
 RUN Rscript -e "install.packages('leaflet')"
 RUN Rscript -e "install.packages('rworldmap')"
 RUN Rscript -e "install.packages('leaflet.extras')"
-RUN Rscript -e "install.packages('spatialEco')"
+
 RUN Rscript -e "install.packages('leaflegend')"
 RUN Rscript -e "install.packages('shiny')"
 
-RUN Rscript -e "install.packages('devtools')"
-RUN Rscript -e "install.packages('spatialEco', repos = 'http://cran.us.rproject.org')"
-
 RUN installGithub.r mattflor/chorddiag
 
+RUN apt-get update && apt-get install -y \
+    git \
+    r-cran-spatialEco \
+    sudo
 
 RUN echo "local(options(shiny.port = as.numeric(Sys.getenv('PORT')), shiny.host = '0.0.0.0'))" > /usr/lib/R/etc/Rprofile.site
 
