@@ -1,4 +1,5 @@
 FROM ubuntu:18.04
+FROM rocker/r-ubuntu:18.04  
 RUN export DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && apt-get install -y tzdata
 RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
