@@ -61,9 +61,12 @@ RUN Rscript -e "install.packages('devtools')"
 RUN installGithub.r mattflor/chorddiag
 
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    sudo \
+    libudunits2-dev \
+    libgeos-dev \
+    libproj-dev \
 
-RUN install2.r --error \
-udunits2
 
 RUN install2.r --error \
                 units
