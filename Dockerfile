@@ -56,6 +56,7 @@ RUN Rscript -e "install.packages('leaflet.extras')"
 
 RUN Rscript -e "install.packages('leaflegend')"
 RUN Rscript -e "install.packages('shiny')"
+RUN Rscript -e "install.packages('devtools')"
 
 RUN installGithub.r mattflor/chorddiag
 
