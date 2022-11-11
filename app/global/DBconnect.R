@@ -7,7 +7,7 @@
 #               PWD = "International123")
 
 # use this connection when deploying application to shinyapps.io
-url <- httr::parse_url(Sys.getenv("DATABASE_URL"))
+
 con <- dbPool(odbc(),
               Driver = "ODBC Driver 17 for SQL Server",
               Server = "iecproduction.database.windows.net",
