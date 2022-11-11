@@ -56,6 +56,10 @@ RUN Rscript -e "install.packages('spatialEco')"
 RUN Rscript -e "install.packages('leaflegend')"
 RUN Rscript -e "install.packages('shiny')"
 
+RUN Rscript -e "install.packages('devtools')"
+RUN Rscript -e "install.packages('spatialEco', repos = 'http://cran.us.rproject.org')"
+
+RUN R -q -e 'devtools::install_github("mattflor/chorddiag")'
 
 
 RUN echo "local(options(shiny.port = as.numeric(Sys.getenv('PORT')), shiny.host = '0.0.0.0'))" > /usr/lib/R/etc/Rprofile.site
