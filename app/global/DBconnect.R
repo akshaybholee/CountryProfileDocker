@@ -7,6 +7,7 @@
 #               PWD = "International123")
 
 # use this connection when deploying application to shinyapps.io
+print(odbcListDrivers())
 
 con <- dbPool(odbc(),
               Driver = "SQLServer",
