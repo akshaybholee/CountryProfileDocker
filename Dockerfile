@@ -1,3 +1,26 @@
+FROM python:3.8
+
+# set work directory
+WORKDIR /usr/src/app
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# install psycopg2 and pyodbc dependencies
+RUN apt-get update
+RUN apt-get -y install postgresql
+RUN apt-get -y install gcc # gcc installs correctly
+RUN apt-get -y install g++ # g++ and the libraries below don't
+RUN apt-get -y install unixodbc
+RUN apt-get -y install unixodbc-dev
+RUN apt-get -y install freetds-dev
+RUN apt-get -y install freetds-bin
+RUN apt-get -y install tdsodbc
+RUN apt-get -y install --reinstall build-essential
+RUN apk add build-base
+RUN apt-get clean
+
 FROM ubuntu:16.04
 
 LABEL maintainer="IEC <IEC>"
