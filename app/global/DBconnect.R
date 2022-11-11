@@ -9,7 +9,7 @@
 # use this connection when deploying application to shinyapps.io
 
 con <- dbPool(odbc(),
-              Driver = "ODBC Driver 17.5 for SQL Server",
+              Driver = "ODBC Driver 17 for SQL Server",
               Server = "iecproduction.database.windows.net",
               Database = "IECPRODDB",
               UID = "IECPROD",
