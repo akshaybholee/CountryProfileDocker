@@ -1,26 +1,7 @@
-
-FROM ubuntu:16.04
-
-LABEL maintainer="IEC <IEC>"
-
-# apt-get and system utilities
-RUN apt-get update && apt-get install -y \
-    curl apt-utils apt-transport-https debconf-utils gcc build-essential g++-5\
-    && rm -rf /var/lib/apt/lists/*
-
-# adding custom MS repository
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
-
-# install SQL Server drivers
-RUN apt-get update && ACCEPT_EULA=Y apt-get install -y msodbcsql unixodbc
-
-# install SQL Server tools
-RUN apt-get update && ACCEPT_EULA=Y apt-get install -y mssql-tools
-RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
-RUN /bin/bash -c "source ~/.bashrc"
-
 FROM rocker/r-base:latest
+RUN apt-get -y install unixodbc
+RUN apt-get -y install unixodbc-dev
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     libcurl4-gnutls-dev \
@@ -83,24 +64,4 @@ EXPOSE 3838
 
 CMD ["R", "-e", "shiny::runApp('/home/app')"]
 
-FROM python:3.8
-
-# set work directory
-WORKDIR /usr/src/app
-
-# set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# install psycopg2 and pyodbc dependencies
-RUN apt-get update
-RUN apt-get -y install postgresql
-RUN apt-get -y install gcc # gcc installs correctly
-RUN apt-get -y install g++ # g++ and the libraries below don't
-RUN apt-get -y install unixodbc
-RUN apt-get -y install unixodbc-dev
-RUN apt-get -y install freetds-dev
-RUN apt-get -y install freetds-bin
-RUN apt-get -y install tdsodbc
-RUN apt-get -y install --reinstall build-essential
 
