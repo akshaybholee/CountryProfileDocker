@@ -60,6 +60,8 @@ RUN Rscript -e "install.packages('devtools')"
 
 RUN installGithub.r mattflor/chorddiag
 
+RUN apt-get install -y libudunits2-dev
+
 RUN install2.r --error \
                 units
                 
