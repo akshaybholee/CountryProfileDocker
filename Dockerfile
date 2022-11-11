@@ -1,8 +1,14 @@
-FROM python:3.8
-RUN apt-get -y install unixodbc
-RUN apt-get -y install unixodbc-dev
+FROM ubuntu:18.04
+RUN apt-get update -y && apt-get install -y build-essential curl libssl1.0.0 libssl-dev gnupg2 software-properties-common dirmngr apt-transport-https apt-utils lsb-release ca-certificates
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+RUN add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
+RUN apt-get update -y && apt-get install -y r-base
 
-FROM rocker/r-base:latest
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+RUN curl https://packages.microsoft.com/config/ubuntu/18.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
+RUN apt-get update -y
+RUN ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev mssql-tools
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     libcurl4-gnutls-dev \
