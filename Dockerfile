@@ -1,7 +1,8 @@
-FROM rocker/r-base:latest
+FROM python:3.8
 RUN apt-get -y install unixodbc
 RUN apt-get -y install unixodbc-dev
 
+FROM rocker/r-base:latest
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
     libcurl4-gnutls-dev \
