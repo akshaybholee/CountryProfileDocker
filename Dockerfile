@@ -60,10 +60,7 @@ RUN Rscript -e "install.packages('devtools')"
 
 RUN installGithub.r mattflor/chorddiag
 
-RUN apt-get update && apt-get install -y \
-    git \
-    r-cran-spatialEco \
-    sudo
+RUN installGithub.r jeffreyevans/spatialEco
 
 RUN echo "local(options(shiny.port = as.numeric(Sys.getenv('PORT')), shiny.host = '0.0.0.0'))" > /usr/lib/R/etc/Rprofile.site
 
