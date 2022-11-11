@@ -1,4 +1,9 @@
 FROM ubuntu:18.04
+RUN export DEBIAN_FRONTEND=noninteractive
+RUN apt-get update -y && apt-get install -y tzdata
+RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
+RUN dpkg-reconfigure --frontend noninteractive tzdata
+
 RUN apt-get update -y && apt-get install -y build-essential curl libssl1.0.0 libssl-dev gnupg2 software-properties-common dirmngr apt-transport-https apt-utils lsb-release ca-certificates
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
 RUN add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu bionic-cran35/'
