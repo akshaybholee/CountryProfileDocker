@@ -52,11 +52,8 @@ RUN Rscript -e "install.packages('rworldmap')"
 RUN Rscript -e "install.packages('leaflet.extras')"
 RUN Rscript -e "install.packages('spatialEco')"
 RUN Rscript -e "install.packages('leaflegend')"
-RUN Rscript -e "install.packages('httr')"
-RUN Rscript -e "install.packages('DBI')"
-RUN Rscript -e "install.packages('RODBC')"
+RUN Rscript -e "install.packages('shiny')"
 
-RUN install.r shiny
 
 
 RUN echo "local(options(shiny.port = as.numeric(Sys.getenv('PORT')), shiny.host = '0.0.0.0'))" > /usr/lib/R/etc/Rprofile.site
