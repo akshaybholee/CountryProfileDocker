@@ -1,5 +1,6 @@
 #### Create Server actions #####
 server <- shinyServer(function(input, output, session) {
+  shinyOptions(cache = cachem::cache_disk("./app-cache"))
   
   
   #Initialize color palette

@@ -20,7 +20,6 @@ source("global/dataframe.R")
 source("functions/functions.R")
 #### End Initialize global functions ####
 
-shinyOptions(cache = cachem::cache_disk("./app-cache"))
 
 #### Create User Interface #####
 ui <-
