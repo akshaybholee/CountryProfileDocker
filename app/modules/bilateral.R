@@ -5,9 +5,11 @@ bilateral_ui <- function(id) {
     8,
     offset = 2,
     shinydashboard::box(
+      id = "titlebilateral",
       solidHeader = TRUE,
-      column(4, align = 'left', htmlOutput(outputId = ns("Title"),container = tags$h4,
-                                           class = "title")),
+    column(4, align = 'left', htmlOutput(outputId = ns("Title"),container = tags$h4,
+                                           class = "title")
+          ),
       column(
         5,
         align = 'right',
@@ -34,7 +36,7 @@ bilateral_ui <- function(id) {
   fluidRow(column(
     8,
     offset = 2,
-    shinydashboard::box(
+    shinydashboard::box( id = "bilateralchord",
       solidHeader = TRUE,
       column(5,
              align = 'left',

@@ -5,6 +5,7 @@ tradeingoods_ui <- function(id) {
     8,
     offset = 2,
     shinydashboard::box(
+      id = "titleti",
       solidHeader = TRUE,
       column(8, align = 'left', htmlOutput(outputId = ns("country"))),
       column(
@@ -21,11 +22,13 @@ tradeingoods_ui <- function(id) {
       width = 16
     )
   )),
-  fluidRow(column(
+
+  fluidRow( column(
     8,
     offset = 2,
-    shinydashboard::box(
+    shinydashboard::box( id = "treemapbar",
       solidHeader = TRUE,
+     
       column(
         8,
         htmlOutput(outputId = ns("treetitle")),
@@ -43,8 +46,11 @@ tradeingoods_ui <- function(id) {
       br(),
       column(12, htmlOutput(outputId = ns("titext"))),
       width = 16
-    )
-  )))
+   
+  ))
+  )
+  
+  )
   
 }
 
@@ -411,10 +417,9 @@ tradeingoods_server <-
                      tooltip
                    })
                    
-                   
+               
      
-                   
-                   output$treemap <- renderEcharts4r({
+                   treemap_graph <- reactive({
                      df_hc_products() |>
                        e_charts() |>
                        e_grid(height = "120%") |>
@@ -460,7 +465,7 @@ tradeingoods_server <-
                          ),
                          calculable = TRUE,
                          min = 0,
-                           # min(as.numeric(df_hc_products()$value)),
+                         # min(as.numeric(df_hc_products()$value)),
                          max = max(as.numeric(df_hc_products()$value)),
                          type = 'continuous',
                          orient = 'horizontal',
@@ -489,8 +494,12 @@ tradeingoods_server <-
                                       }  "
                          )
                        )
-                     
                    }) %>% bindCache(reporter_iso_sel(), tradeflow(), sectorclick$var, treemapclick$var)
+                   
+                   output$treemap <- renderEcharts4r({
+                     treemap_graph()
+                     
+                   }) 
                    
                    
                    
@@ -529,9 +538,7 @@ tradeingoods_server <-
                      }
                    }) %>%  bindCache(reporter_iso_sel(), tradeflow(), sectorclick$var, treemapclick$var)
                    
-                   
-                   
-                   output$barchart <- renderEcharts4r({
+                   bar_graph <- reactive({
                      e_charts(data = df_top_partner(), x = Short_Name) %>%
                        e_bar(
                          tradevalue,
@@ -575,7 +582,11 @@ tradeingoods_server <-
                        ) %>%
                        e_add_nested("itemStyle",
                                     color)
-                   })  %>% bindCache(reporter_iso_sel(), tradeflow(), sectorclick$var, treemapclick$var)
+                   }) %>% bindCache(reporter_iso_sel(), tradeflow(), sectorclick$var, treemapclick$var)
+                   
+                   output$barchart <- renderEcharts4r({
+                    bar_graph()
+                   })  
                    
                    output$bartitle <- renderText({
                      if (nrow(df_top_partner()) == 15)
@@ -736,6 +747,10 @@ tradeingoods_server <-
                        HTML(paste0('<br/>', narrative_text_1, '<br/>', narrative_text_2))
                        
                      })  %>% bindCache(reporter_iso_sel(), tradeflow(), sectorclick$var, treemapclick$var)
+                   
+     
+           
+                   return(  treemap_graph)
                    
                  })
     

@@ -464,3 +464,41 @@ svg:not(:root) {
     margin-right: auto;
     height: fit-content;
 }
+
+
+
+#shiny-notification-panel {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: #0000;
+    padding: 2px;
+    width: 250px;
+    z-index: 99999;
+    margin-bottom: 810px;
+    margin-right: 800px;
+}
+
+.col-sm-4.toggletr{
+  display: flex;
+}
+
+.togtxt{
+  margin-left: 5px;
+}
+
+.label-default {
+    background-color: #428bca;
+    color: #428bca;
+}
+
+
+.material-switch>label:before {
+    background: #54c3ea;
+    border-radius: 8px;
+}
+
+.material-switch>label:after {
+    background: #54c3ea;
+    border-radius: 1pc;
+}

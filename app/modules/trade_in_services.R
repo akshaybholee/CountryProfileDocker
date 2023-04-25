@@ -457,8 +457,8 @@ tradeinservices_server <-
                                                    , joinCode = "ISO3"
                                                    , nameJoinColumn = "ISO3")
                        
-                       sPDF <-
-                         sp.na.omit(sPDF, "tradevalue", margin = 1)
+                       # sPDF <-
+                       #   sp.na.omit(sPDF, "tradevalue", margin = 1)
                        
                        pal <- colorNumeric(
                          palette = c(
@@ -472,7 +472,8 @@ tradeinservices_server <-
                            '#a50f15',
                            '#67000d'
                          ),
-                         domain = z$tradevalue
+                         domain = z$tradevalue,
+                         na.color = "#e2e2e2"
                        )
                        
                        z <- z[order(z$tradevalue), ]
@@ -488,11 +489,11 @@ tradeinservices_server <-
                        )) %>%
                          addTiles(urlTemplate = "https://api.mapbox.com/styles/v1/bholee/cl75rvfqs002q14o0rwzd6oe5/tiles/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYmhvbGVlIiwiYSI6ImNrN2tibG9pNzAwajMzbWw4ZnlpcDNqY2wifQ.o-qJAmRdkh-McoubI4E2DA"
                                   ,
-                                  options = tileOptions(minZoom = 1,
-                                                        maxZoom = 2.5)) %>%
+                                  options = tileOptions(minZoom = 1.2,
+                                                        maxZoom = 1.2)) %>%
                          setView(lng = 0,
                                  lat = 20,
-                                 zoom = 1.5) %>%
+                                 zoom = 1.2) %>%
                          setMaxBounds(
                            lng1 = 58.995311187950925
                            ,
@@ -500,7 +501,7 @@ tradeinservices_server <-
                            ,
                            lng2 = -58.995311187950925
                            ,
-                           lat2 = 223.2421875
+                           lat2 = 174.0234375
                          ) %>%
                          addPolygons(
                            data = sPDF,
@@ -664,6 +665,8 @@ tradeinservices_server <-
                    })  %>% bindCache(reporter_iso_sel(),
                                      services_tradeflow(),
                                      input$barchart_clicked_data)
+                   
+                   return(df_services_data)
                    
                    
                  })

@@ -2,7 +2,7 @@
 trade_agreement_ui <- function(id) {
   ns <- NS(id)
   
-  tagList(shinyjs::useShinyjs(),
+  tagList(
           fluidRow(column(
             8,
             offset = 2,
@@ -10,17 +10,46 @@ trade_agreement_ui <- function(id) {
               solidHeader = TRUE,
               column(12, align = 'left', h4(strong("Trade Agreement"))),
               br(),
+              # column(
+              #   12,
+              #   align = 'left',
+              #   f_switchButton(
+              #     inputId = ns("tog1"),
+              #     label = HTML('<font size="-1"><em> Switch to map or table</em></font>'),
+              #     value = TRUE,
+              #     col = "RG",
+              #     type = "TF"
+              #   )
+              # ),
+              # column(
+              #   12,
+              #   align = 'left',
+              #   actionButton(
+              #     inputId = ns("but"),
+              #     label = "but"
+              #   )
+              # ),
+              # column(
+              #   12,
+              #   align = 'left',
+              #   actionButton(
+              #     inputId = ns("but1"),
+              #     label = "but1"
+              #   )
+              # ),
               column(
-                12,
+                class = "toggletr",
+                4,
                 align = 'left',
-                f_switchButton(
-                  inputId = ns("tog"),
-                  label = HTML('<font size="-1"><em> Switch to map or table</em></font>'),
-                  value = TRUE,
-                  col = "RG",
-                  type = "TF"
-                )
+                htmlOutput(outputId = ns("toglabel")),
+                materialSwitch(inputId = ns("tog1"), label = ""),
+                HTML('<div class = "togtxt"><font size="-1"><em><strong> Switch to map or table</strong></em></font></div>')
               ),
+              # column(
+              #   1,
+              #   align = 'left',
+              #   materialSwitch(inputId = ns("tog1"), label = "", status = "danger")
+              # ),
               br(),
               column(
                 12,
@@ -43,11 +72,11 @@ trade_agreement_ui <- function(id) {
   
 }
 
-trade_agreement_server <- function(id, reporter_iso_sel) {
+trade_agreement_server <- function(id,  reporter_iso_sel) {
   moduleServer(id,
                
                function(input, output, session) {
-         
+            
                  # data(worldgeojson, package = "highcharter")
                  print("start trade agreement")
                  df_agreement <- reactive({
@@ -145,14 +174,14 @@ trade_agreement_server <- function(id, reporter_iso_sel) {
                    
                    leaflet(options = leafletOptions(attributionControl = FALSE,zoomControl = FALSE,zoomSnap = 0.1)) %>%
                      addTiles(urlTemplate = "https://api.mapbox.com/styles/v1/bholee/cl75rvfqs002q14o0rwzd6oe5/tiles/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiYmhvbGVlIiwiYSI6ImNrN2tibG9pNzAwajMzbWw4ZnlpcDNqY2wifQ.o-qJAmRdkh-McoubI4E2DA"
-                              , options = tileOptions(noWrap = FALSE, minZoom = 2.1,
-                                                      maxZoom = 2.1,)
+                              , options = tileOptions(noWrap = FALSE, minZoom = 1.8,
+                                                      maxZoom = 1.8,)
                               ) %>% 
-                     setView(lng = 0,lat = 20, zoom = 2.1) %>%
+                     setView(lng = 0,lat = 20, zoom = 1.8) %>%
                      setMaxBounds(lng1 = 58.995311187950925
                                   , lat1 =  -174.0234375
                                   , lng2 = -58.995311187950925
-                                  , lat2 = 223.2421875) %>%
+                                  , lat2 = 174.0234375) %>%
                      addPolygons(data=sPDF, weight = 1.5, fillColor = ~pal(n) ,color="white", fillOpacity = 1, highlight = highlightOptions(
                        fillColor = '#1c5d99'),label=~as.character(tooltip)) %>%
                      addLegendNumeric(
@@ -227,40 +256,50 @@ trade_agreement_server <- function(id, reporter_iso_sel) {
                  }) 
                  
               
-                 # observe({
-                 #   shinyjs::toggle("map", condition = input$tog)
-                 #   shinyjs::toggle("table1", condition = !input$tog)
-                 # })
                  
-                 # observeEvent(input$tog, {
-                 #   shinyjs::show("agreement-map",asis = TRUE)
-                 #   shinyjs::hide("agreement-table1",asis = TRUE)
-                 # })
-                 # 
-                 # observeEvent(!input$tog, {
-                 #   shinyjs::hide("map",asis = TRUE)
-                 #   shinyjs::show("table1",asis = TRUE)
-                 # })
                  
-                
-
-                observe({
-                
-                  if(input$tog){
-                    shinyjs::hide("table1")
-                    shinyjs::show("map")
-                                  }
-                  else{
-                    shinyjs::show("table1")
-                    shinyjs::hide("map")
-                  }
+                 output$toglabel <-
+                   renderText({
+                     if(!input$tog1)
+                     {
+                       
+                      x <- HTML("<strong>map</strong>")
+                       
+                     }
+                     else {
+                   x <- HTML("<strong>table</strong>")
+                     }
+                     x
+                   })
                   
+               observe({
+                 # shinyjs::hideElement(id = "table1")
+                 # shinyjs::hideElement(id = "map")
+                 
+                 if(!input$tog1)
+                 {
+                   # print(paste("tog 2nd Observe: ", input$tog))
+                   shinyjs::hideElement(id = "table1")
+                   shinyjs::showElement(id = "map")
+                   
+                 }
+                 else {
+                   # print(paste("tog first Observe: ", input$tog))
+                   shinyjs::hideElement(id = "map")
+                   shinyjs::showElement(id = "table1")
+                               }
+
+           
                   if(nrow(df_agreement())==0)
                   {
                     shinyjs::hide("TR")
                   }
-                })
-                
+                  else
+                  {
+                    shinyjs::show("TR")
+                  }
+               })
+                return(df_agreement)
                  
                })
   

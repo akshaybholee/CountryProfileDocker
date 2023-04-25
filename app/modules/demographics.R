@@ -4,7 +4,7 @@ demographics_ui <- function(id) {
   tagList(fluidRow(column(
     8,
     offset = 2,
-    shinydashboard::box(
+    shinydashboard::box( id = "demographic",
       solidHeader = TRUE,
       tags$div(
         class = "row mgtop",

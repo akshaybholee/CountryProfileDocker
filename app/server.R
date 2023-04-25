@@ -1,6 +1,5 @@
 #### Create Server actions #####
 server <- shinyServer(function(input, output, session) {
-  shinyOptions(cache = cachem::cache_disk("./app-cache"))
   
   
   #Initialize color palette
@@ -33,7 +32,7 @@ server <- shinyServer(function(input, output, session) {
   
   
   #### Trade in goods ####
-  tradeingoods_server(
+  plot_1 <- tradeingoods_server(
     id = "tradeingoods",
     reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
     reporter = reporter_iso_sel$reporter,
@@ -52,7 +51,7 @@ server <- shinyServer(function(input, output, session) {
   #### Trade performance ####
   
   #### Logistic performance ####
-  LPI_server(
+  plot_2 <- LPI_server(
     id = "LPI",
     reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
     reporter = reporter_iso_sel$reporter,
@@ -106,7 +105,7 @@ server <- shinyServer(function(input, output, session) {
   #### Digital ####
   
   # ### Digital - Trade Facilitation ####
-  trade_facilitation_server(
+  tradefacilitation <-    trade_facilitation_server(
     id = "tradefacilitation",
     reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
     reporter = reporter_iso_sel$reporter,
@@ -116,8 +115,19 @@ server <- shinyServer(function(input, output, session) {
   # ### Digital - Trade Facilitation ####
   # 
   # #### Download ####
-  # download_server(id = "reporterdownload")
+  download_server(id = "reporterdownload", reporter_iso_sel = reporter_iso_sel$reporter_iso_sel,
+                  tradefacilitation = tradefacilitation )
+  
   #### Download ####
+  # observe(
+  #   {
+  #     req(plot_1 , plot_2, reporter_iso_sel$reporter_iso_sel)
+  # screenshot(selector = "#treemapbar", timer = 3, filename = "tradeingoods", server_dir = ".", download = FALSE)
+  #  screenshot(selector = "#LPI-LPIBox", timer = 3, filename = "LPI", server_dir = ".", download = FALSE)
+  #     # screenshot(selector = "#tradeingoods-barchart", timer = 3, filename = "barchart")
+  #   }
+  # )
+  
   
 })
 #### End create Server actions #####

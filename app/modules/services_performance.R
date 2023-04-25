@@ -327,6 +327,6 @@ services_performance_server <-
                      
                    }) %>% bindCache(reporter())
                    
-                   
+                   return(df_services_performance)
                  })
   }

@@ -1,8 +1,10 @@
 LPI_ui <- function(id) {
   ns <- NS(id)
   
-  tagList(useShinyjs(), fluidRow(column(
-    8, offset = 2, shinydashboard::box(id=ns("LPIBox"),
+  tagList(
+          fluidRow(column(
+    8, offset = 2, shinydashboard::box(
+      id=ns("LPIBox"),
       solidHeader = TRUE,
       column(
         7,
@@ -18,7 +20,7 @@ LPI_ui <- function(id) {
              #height = 900,
              #align = 'right',
              class = "text_padding",
-             echarts4rOutput(outputId = ns("displayradar"),width = "105%", height = 500)
+             echarts4rOutput(outputId = ns("displayradar"),width = "100%", height = 500)
              ),
       width = 16
     )
@@ -34,7 +36,7 @@ LPI_server <-
     moduleServer(id,
                  
                  function(input, output, session) {
-                   
+                   print(paste("working directory:",getwd()))
                    
                    df_Logistic_Performance_Index <-
                      reactive({
@@ -55,18 +57,9 @@ LPI_server <-
                        df_LPI
                      }) %>% bindCache( reporter_iso_sel())
 
-                   observe(
-                                {
-                                  if (nrow(df_Logistic_Performance_Index())==0)
-                                  {
-                                    shinyjs::hide(id = "LPIBox")
-                                  }
-                                  
-                   }
-                   )
+                 
                    
-                   
-                   output$displayradar <- renderEcharts4r({
+                   lpi_graph <- reactive({
                      req(nrow(df_Logistic_Performance_Index())>0)
                      
                      df_LPI <- df_Logistic_Performance_Index()
@@ -78,20 +71,21 @@ LPI_server <-
                      barcolor <- data.frame(color = c(
                        '#fbfbfb','#fbfbfb','#fbfbfb','#fbfbfb','#fbfbfb','#fbfbfb','#fbfbfb','#fbfbfb','#fbfbfb',
                        '#fbfbfb','#fbfbfb','#fbfbfb','#fbfbfb','#0291da'))
-                    #  #test
+                     #  #test
                      rifo <- lapply(df_LPI$LPI_Category, function(x) {
-                       list(height = 40, 
-                            backgroundColor=list(image=paste0('https://iecstorageaccount.blob.core.windows.net/json/',x,'.png')),align = "center")
-                    
-                   })
+                       list(height = 40,
+                            backgroundColor=list(image=paste0(getwd(),"/img/",x,'.png')),align = "center")
+                       
+                       print(paste("wrkpng:",paste0(getwd(),"/img/",x,'.png')))
+                     })
                      
                      df_LPI$LPI_Category <- gsub(" ", "", df_LPI$LPI_Category)
                      
-                   names(rifo) <- df_LPI$LPI_Category
-                   
-                
-                   
-                
+                     names(rifo) <- df_LPI$LPI_Category
+                     
+                     
+                     
+                     
                      df_LPI |> 
                        e_charts(LPI_Category) |> 
                        e_radar(Score, min = 1, max = 5, symbolSize= 5, 
@@ -135,7 +129,7 @@ LPI_server <-
                          return(params)}')) |>
                        e_radar_opts(         
                          name = list(color = "#18191A", overflow = "break", fontSize=13
-                         ,formatter = htmlwidgets::JS("
+                                     ,formatter = htmlwidgets::JS("
         function(value){ if (value == 'Internationalshipments')
                                                                                                 {
                     return (  '{' + 'Internationalshipments' + '| }') + `\n\n` + 'International' +`\n` + 'shipments  ' }
@@ -160,13 +154,16 @@ LPI_server <-
                                                                                                                                   {
                     return (  '{' + 'Timeliness' + '| }') + `\n\n` + 'Timeliness' }
                     }
-                                                      "),
-                         
-                           
+                                                      ")
+                                     ,
+
+
                                      rich = rifo
-        ))
+                         ))
                      
                    }) %>% bindCache( reporter_iso_sel())
+                   
+                   output$displayradar <- renderEcharts4r({lpi_graph()}) 
                    
                    
                    
@@ -305,6 +302,29 @@ LPI_server <-
                        }
                        
                      }) %>% bindCache( reporter())
+                   
+
+                   observe(
+                     {
+                       # if (nrow(df_Logistic_Performance_Index())>0)
+                       # {
+                       # shinyjs::show(id = "LPIBox")
+                       # }
+                       # shinyjs::hide(id = "LPIBox")
+                       if (nrow(df_Logistic_Performance_Index())==0)
+                       {
+                         shinyjs::hideElement(id = "LPIBox")
+                       } 
+                       else
+                       {
+                         shinyjs::showElement(id = "LPIBox")
+                       }
+                     
+
+                     }
+                   )
+                   
+                   return(df_Logistic_Performance_Index)
                    
                    
                  })}

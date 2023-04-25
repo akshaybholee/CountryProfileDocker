@@ -11,7 +11,9 @@ Digital_ui <- function(id) {
          width = 16
     )
   )),fluidRow(column(
-    8, offset = 2, shinydashboard::box(solidHeader = TRUE,
+    8, offset = 2, shinydashboard::box(
+      id = "digital",
+      solidHeader = TRUE,
                        fluidRow(column(id=ns("DTR"),
                                        4,
                                        class = "digital_cards",

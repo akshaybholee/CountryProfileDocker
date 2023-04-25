@@ -4,7 +4,7 @@ trade_performance_ui <- function(id) {
   tagList(fluidRow(column(
     8,
     offset = 2,
-    shinydashboard::box(
+    shinydashboard::box( id = "tradeperformance",
       solidHeader = TRUE,
       column(8, align = 'left', htmlOutput(outputId = ns("Title"),container = tags$h4,
                                            class = "title")),
