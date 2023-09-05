@@ -5,6 +5,7 @@ tradeingoods_ui <- function(id) {
     8,
     offset = 2,
     shinydashboard::box(
+      id = "titleti",
       solidHeader = TRUE,
       column(8, align = 'left', htmlOutput(outputId = ns("country"))),
       column(

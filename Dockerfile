@@ -95,6 +95,10 @@ RUN apt-get update \
     texlive-humanities \
     texlive-latex-extra \
     texinfo \
+<<<<<<< HEAD
+=======
+    texlive-xetex \
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/ \
   && cd /usr/share/texlive/texmf-dist \
@@ -110,6 +114,12 @@ RUN apt-get update \
 RUN wget https://github.com/jgm/pandoc/releases/download/1.15.1/pandoc-1.15.1-1-amd64.deb
 RUN dpkg -i pandoc-1.15.1-1-amd64.deb
 
+<<<<<<< HEAD
+=======
+RUN Rscript -e "install.packages('shinyWidgets')"
+
+RUN Rscript -e "tinytex:::install_prebuilt('TinyTeX')"
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
 
 RUN echo "local(options(shiny.port = as.numeric(Sys.getenv('PORT')), shiny.host = '0.0.0.0'))" > /usr/lib/R/etc/Rprofile.site
 

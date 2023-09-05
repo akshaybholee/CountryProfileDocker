@@ -4,82 +4,82 @@ Macroeconomic_ui <- function(id) {
   tagList(fluidRow(column(
     8,
     offset = 2,
-    shinydashboard::box( id = ns("Boxheader"),
-         solidHeader = TRUE,
-         column(4, align = 'left', h4(strong("Macroeconomic Indicators")))
-         ,
-         width = 16
+    shinydashboard::box( id = "Boxheader",
+                         solidHeader = TRUE,
+                         column(4, align = 'left', h4(strong("Macroeconomic Indicators")))
+                         ,
+                         width = 16
     )
   )),
   fluidRow(column(
     8,
     offset = 2,
-    shinydashboard::box(id = ns("Boxcharts"),
-        solidHeader = TRUE,
-        column(6,
-               id = ns("columnEx"),
-               #class = "text_padding",
-               align = 'left', h4(strong("Exchange Rates")),
-               echarts4rOutput(outputId = ns("displayExchangeRate"), height = 275),
-               htmlOutput(outputId = ns("Exchangeratetext"))),
-        
-        column(6,
-               id = ns("column1"), h4(strong("Real Interest Rate")),
-               echarts4rOutput(outputId = ns("displayInterest"), height = 275),
-               htmlOutput(outputId = ns("RealInteresttext")),      
-               br(),
-               br(),
-               br()
-        ),  
-        
-        column(6,
-               align = 'left',
-               id = ns("columnFDI"),
-               #class = "header_padding_1", 
-               h4( strong("Foreign Direct Investment, net (US$)")),
-               #class = "text_padding",
-               echarts4rOutput(outputId = ns("displayFDI"), height = 275),
-               htmlOutput(outputId = ns("FDItext")
-               ),
-               br(),
-               br()),
-        column(6,
-               id = ns("columnCAB"), align = 'left', h4(strong("Current Account Balance (US$)")),
-               echarts4rOutput(outputId = ns("displayCurrentAcc"), height = 275),
-               htmlOutput(outputId = ns("CurrentAcctext")), #class = "text_align", 
-               br(),
-               br(),
-               br()
-        ), 
-        
-        
-        
-        column(6,
-               id = ns("columnGDPPC"),
-               h4(strong("GDP Per Capita (Current US$)")),
-               #class = "text_padding",
-               echarts4rOutput(outputId = ns("displayGDPPC"), height = 275),
-               htmlOutput(outputId = ns("GDPPCtext")),
-               br(),
-               br(),
-               br(),
-               br(),
-               br()
-        ),
-        column(6,
-               id = ns("columnGDP"),
-               h4(strong("GDP (Current US$)")),
-               #class = "text_padding",
-               echarts4rOutput(outputId = ns("displayGDP"), height = 275),
-               htmlOutput(outputId = ns("GDPtext")),
-               br(),
-               br(),
-               br()
-        ),
-        
-        width = 16,
-        
-        
+    shinydashboard::box(id = "Boxcharts",
+                        solidHeader = TRUE,
+                        column(6,
+                               id = ns("columnEx"),
+                               #class = "text_padding",
+                               align = 'left', h4(strong("Exchange Rates")),
+                               echarts4rOutput(outputId = ns("displayExchangeRate"), height = 275),
+                               htmlOutput(outputId = ns("Exchangeratetext"))),
+                        
+                        column(6,
+                               id = ns("column1"), h4(strong("Real Interest Rate")),
+                               echarts4rOutput(outputId = ns("displayInterest"), height = 275),
+                               htmlOutput(outputId = ns("RealInteresttext")),      
+                               br(),
+                               br(),
+                               br()
+                        ),  
+                        
+                        column(6,
+                               align = 'left',
+                               id = ns("columnFDI"),
+                               #class = "header_padding_1", 
+                               h4( strong("Foreign Direct Investment, net (US$)")),
+                               #class = "text_padding",
+                               echarts4rOutput(outputId = ns("displayFDI"), height = 275),
+                               htmlOutput(outputId = ns("FDItext")
+                               ),
+                               br(),
+                               br()),
+                        column(6,
+                               id = ns("columnCAB"), align = 'left', h4(strong("Current Account Balance (US$)")),
+                               echarts4rOutput(outputId = ns("displayCurrentAcc"), height = 275),
+                               htmlOutput(outputId = ns("CurrentAcctext")), #class = "text_align", 
+                               br(),
+                               br(),
+                               br()
+                        ), 
+                        
+                        
+                        
+                        column(6,
+                               id = ns("columnGDPPC"),
+                               h4(strong("GDP Per Capita (Current US$)")),
+                               #class = "text_padding",
+                               echarts4rOutput(outputId = ns("displayGDPPC"), height = 275),
+                               htmlOutput(outputId = ns("GDPPCtext")),
+                               br(),
+                               br(),
+                               br(),
+                               br(),
+                               br()
+                        ),
+                        column(6,
+                               id = ns("columnGDP"),
+                               h4(strong("GDP (Current US$)")),
+                               #class = "text_padding",
+                               echarts4rOutput(outputId = ns("displayGDP"), height = 275),
+                               htmlOutput(outputId = ns("GDPtext")),
+                               br(),
+                               br(),
+                               br()
+                        ),
+                        
+                        width = 16,
+                        
+                        
     )
   ),
   )
@@ -127,8 +127,8 @@ Macroeconomic_server <-
                      {
                        dbGetQuery(
                          con,
-                     
-                           "select Text_Category, HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01'")
+                         
+                         "select Text_Category, HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01'")
                      }
                    )
                    
@@ -144,14 +144,14 @@ Macroeconomic_server <-
                        
                        if (nrow(df_Macro)>0)
                        {
-                         shinyjs::show(id = "Boxcharts")
-                         shinyjs::show(id = "Boxheader")
+                         shinyjs::show(selector   = "Boxcharts")
+                         shinyjs::show(selector = "Boxheader")
                        }
                        else
                        {
                          
-                         shinyjs::hide(id = "Boxcharts")
-                         shinyjs::hide(id = "Boxheader")
+                         shinyjs::hide(selector = "Boxcharts")
+                         shinyjs::hide(selector = "Boxheader")
                          
                        }
                      }
@@ -309,41 +309,91 @@ Macroeconomic_server <-
                        MAX_Exchange <- max(df_Ex_Value$Exchange_Rate, na.rm = TRUE )
                        MIN_Exchange <- min(df_Macro$Exchange_Rate, na.rm = TRUE )
                        Latest_year <- max(df_Ex_Value$Year, na.rm = TRUE )
-                       df_Ex_MAx_year <- data.frame(df_Ex_Value$Year[df_Ex_Value$Exchange_Rate==MAX_Exchange])
-                       df_Ex_MIN_year <- data.frame(df_Ex_Value$Year[df_Ex_Value$Exchange_Rate==MIN_Exchange])
+                       Previous_year <- Latest_year-1
+                       df_Exchange_latest <- data.frame(df_Ex_Value$Exchange_Rate[df_Ex_Value$Year==Latest_year])
+                       df_Exchange_previous <- data.frame(df_Ex_Value$Exchange_Rate[df_Ex_Value$Year==Previous_year])
                        
                        if (reporter() == 'United States of America' )
                        {
                          df_Exchange_narrative <- df_narrative() %>% filter(Text_Category == 'Exchange_USA')  %>% select(c('HTML_text'))
-                           # dbGetQuery(
-                           #   con,
-                           #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Exchange_USA'"
-                           # )
+                         # dbGetQuery(
+                         #   con,
+                         #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Exchange_USA'"
+                         # )
                          Exchange_rate_text <- df_Exchange_narrative
                          
                        }
                        else
                        {
-                         df_Exchange_narrative <- df_narrative() %>% filter(Text_Category == 'Exchange_rate')  %>% select(c('HTML_text'))
+                         # print("condition1")
+                         if (df_Exchange_latest>df_Exchange_previous)
+                         {
+                           df_Exchange_narrative <- df_narrative() %>% filter(Text_Category == 'Exchange_rate_depreciate')  %>% select(c('HTML_text'))
                            # dbGetQuery(
                            #   con,
                            #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Exchange_rate'"
                            # )
-                         
-                         Exchange_rate_text <-
-                           df_Exchange_narrative %>% str_replace_all(
-                             c(
-                               
-                               "YEAR1" = paste(df_Ex_MAx_year[1,1]),
-                               "VALUE1" = paste(MAX_Exchange),
-                               "YEAR2" = paste(df_Ex_MIN_year[1,1]),
-                               "VALUE2" = paste(MIN_Exchange),
-                               "COUNTRY" = reporter(),
-                               "YEAR3" = paste(Latest_year),
-                               "VALUE3" = paste (df_Ex_Value$Exchange_Rate[df_Ex_Value$Year== Latest_year])
+                           
+                           Exchange_rate_text <-
+                             df_Exchange_narrative %>% str_replace_all(
+                               c(
+                                 
+                                 "YEAR2" = paste(Previous_year),
+                                 "VALUE1" = paste (df_Exchange_latest[1,1]),
+                                 #"YEAR2" = paste(df_Ex_MIN_year[1,1]),
+                                 # "VALUE2" = paste(Previous_year),
+                                 "COUNTRY" = reporter(),
+                                 "YEAR1" = paste(Latest_year),
+                                 "VALUE2" = paste (df_Exchange_previous[1,1])
+                               )
                              )
-                           )
-                         
+                         }
+                         else if (df_Exchange_previous>df_Exchange_latest)
+                         {
+                           df_Exchange_narrative <- df_narrative() %>% filter(Text_Category == 'Exchange_rate_appreciate')  %>% select(c('HTML_text'))
+                           # dbGetQuery(
+                           #   con,
+                           #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Exchange_rate'"
+                           # )
+                           
+                           Exchange_rate_text <-
+                             df_Exchange_narrative %>% str_replace_all(
+                               c(
+                                 
+                                 "YEAR2" = paste(Previous_year),
+                                 "VALUE1" = paste (df_Exchange_latest[1,1]),
+                                 #"YEAR2" = paste(df_Ex_MIN_year[1,1]),
+                                 # "VALUE2" = paste(Previous_year),
+                                 "COUNTRY" = reporter(),
+                                 "YEAR1" = paste(Latest_year),
+                                 "VALUE2" = paste (df_Exchange_previous[1,1])
+                               )
+                             )
+                           
+                         }
+                         else if (df_Exchange_previous == df_Exchange_latest)
+                         {
+                           df_Exchange_narrative <- df_narrative() %>% filter(Text_Category == 'Exchange_rate_equal')  %>% select(c('HTML_text'))
+                           # dbGetQuery(
+                           #   con,
+                           #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Exchange_rate'"
+                           # )
+                           
+                           Exchange_rate_text <-
+                             df_Exchange_narrative %>% str_replace_all(
+                               c(
+                                 
+                                 #"YEAR2" = paste(Previous_year),
+                                 "VALUE1" = paste (df_Exchange_latest[1,1]),
+                                 #"YEAR2" = paste(df_Ex_MIN_year[1,1]),
+                                 # "VALUE2" = paste(Previous_year),
+                                 "COUNTRY" = reporter(),
+                                 "YEAR1" = paste(Latest_year),
+                                 #"VALUE2" = paste (df_Exchange_previous[1,1])
+                               )#
+                             )
+                           
+                         }
                          
                        }
                        
@@ -541,10 +591,10 @@ Macroeconomic_server <-
                          
                        {
                          df_CurrentAcc_narrative <- df_narrative() %>% filter(Text_Category == 'Current_Acc_neg')  %>% select(c('HTML_text'))
-                           # dbGetQuery(
-                           #   con,
-                           #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Current_Acc_neg'"
-                           # )
+                         # dbGetQuery(
+                         #   con,
+                         #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Current_Acc_neg'"
+                         # )
                          
                          Current_Acc_text <-
                            df_CurrentAcc_narrative %>% str_replace_all(
@@ -564,10 +614,10 @@ Macroeconomic_server <-
                        else {
                          
                          df_CurrentAcc_narrative <- df_narrative() %>% filter(Text_Category == 'Current_Acc')  %>% select(c('HTML_text'))
-                           # dbGetQuery(
-                           #   con,
-                           #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Current_Acc'"
-                           # )
+                         # dbGetQuery(
+                         #   con,
+                         #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Current_Acc'"
+                         # )
                          
                          
                          
@@ -786,24 +836,24 @@ Macroeconomic_server <-
                        
                        
                        df_FDI_narrative <- df_narrative() %>% filter(Text_Category == 'FDI')  %>% select(c('HTML_text'))
-                           # dbGetQuery(
-                           #   con,
-                           #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'FDI_neg'"
-                           # )
-                           #
-                         FDI_text <-
-                           df_FDI_narrative %>% str_replace_all(
-                             c(
-
-                               "YEAR1" = paste(df_FDI_MAx_year[1,1]),
-                               "VALUE1" = paste(f_usdvalueposnegtext(MAX_FDI)),
-                               "YEAR2" = paste(df_FDI_MIN_year[1,1]),
-                               "VALUE2" = paste(f_usdvalueposnegtext(MIN_FDI)),
-                               "COUNTRY" = reporter(),
-                               "YEAR3" = paste(Latest_year),
-                               "VALUE3" = paste (f_usdvalueposnegtext(df_FDI_value$FDI[df_FDI_value$Year== Latest_year]))
-                             )
+                       # dbGetQuery(
+                       #   con,
+                       #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'FDI_neg'"
+                       # )
+                       #
+                       FDI_text <-
+                         df_FDI_narrative %>% str_replace_all(
+                           c(
+                             
+                             "YEAR1" = paste(df_FDI_MAx_year[1,1]),
+                             "VALUE1" = paste(f_usdvalueposnegtext(MAX_FDI)),
+                             "YEAR2" = paste(df_FDI_MIN_year[1,1]),
+                             "VALUE2" = paste(f_usdvalueposnegtext(MIN_FDI)),
+                             "COUNTRY" = reporter(),
+                             "YEAR3" = paste(Latest_year),
+                             "VALUE3" = paste (f_usdvalueposnegtext(df_FDI_value$FDI[df_FDI_value$Year== Latest_year]))
                            )
+                         )
                        
                        
                        
@@ -1012,10 +1062,10 @@ Macroeconomic_server <-
                        
                        
                        df_RealInt_narrative <- df_narrative() %>% filter(Text_Category == 'Real_Interest')  %>% select(c('HTML_text'))
-                         # dbGetQuery(
-                         #   con,
-                         #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Real_Interest'"
-                         # )
+                       # dbGetQuery(
+                       #   con,
+                       #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'Real_Interest'"
+                       # )
                        
                        
                        MAX_RealInt <- max(df_RealInt_Value$Interest_Rate, na.rm = TRUE )
@@ -1195,11 +1245,11 @@ Macroeconomic_server <-
                        
                        
                        df_GDP_narrative <- df_narrative() %>% filter(Text_Category == 'GDP_Per_Capita')  %>% select(c('HTML_text'))
-                         # dbGetQuery(
-                         #   con,
-                         #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'GDP_Per_Capita'"
-                         # )
-                         # 
+                       # dbGetQuery(
+                       #   con,
+                       #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'GDP_Per_Capita'"
+                       # )
+                       # 
                        # df_GDP_narrative <- paste ("<font size=+1>GDP per capita of COUNTRY peaked in YEAR1 at VALUE1 and reached its lowest level in YEAR2 at VALUE2.
                        #                            The most recent GDP per capita available for COUNTRY is VALUE3 for the year YEAR3.")
                        
@@ -1387,10 +1437,10 @@ Macroeconomic_server <-
                        
                        
                        df_GDP_narrative <- df_narrative() %>% filter(Text_Category == 'GDP')  %>% select(c('HTML_text'))
-                         # dbGetQuery(
-                         #   con,
-                         #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'GDP'"
-                         # )
+                       # dbGetQuery(
+                       #   con,
+                       #   "select HTML_text from Dashboard_Narrative where project_name = 'Country Profile' and section_code = 'M01' and Text_Category == 'GDP'"
+                       # )
                        # 
                        # df_GDP_narrative <- paste ("<font size=+1>COUNTRY had its highest GDP Current US$ value in YEAR1 at a value of VALUE1 and its lowest value in YEAR2 at VALUE2.
                        #                            The most recent GDP value available for COUNTRY is VALUE3 for the year YEAR3.")
@@ -1425,7 +1475,7 @@ Macroeconomic_server <-
                    
                    
                    ####End of GDP####
-
+                   
                    
                    
                    

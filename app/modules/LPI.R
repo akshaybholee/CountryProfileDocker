@@ -1,7 +1,12 @@
 LPI_ui <- function(id) {
   ns <- NS(id)
   
+<<<<<<< HEAD
   tagList(useShinyjs(), fluidRow(column(
+=======
+  tagList(
+          fluidRow(column(
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
     8, offset = 2, shinydashboard::box(
       id=ns("LPIBox"),
       solidHeader = TRUE,
@@ -35,7 +40,12 @@ LPI_server <-
     moduleServer(id,
                  
                  function(input, output, session) {
+<<<<<<< HEAD
                  
+=======
+                   print(paste("working directory:",getwd()))
+                   
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
                    df_Logistic_Performance_Index <-
                      reactive({
                        reporter_iso <- reporter_iso_sel()
@@ -55,15 +65,7 @@ LPI_server <-
                        df_LPI
                      }) %>% bindCache( reporter_iso_sel())
 
-                   observe(
-                                {
-                                  if (nrow(df_Logistic_Performance_Index())==0)
-                                  {
-                                    shinyjs::hide(id = "LPIBox")
-                                  }
-                                  
-                   }
-                   )
+                 
                    
                    lpi_graph <- reactive({
                      req(nrow(df_Logistic_Performance_Index())>0)
@@ -82,7 +84,11 @@ LPI_server <-
                        list(height = 40,
                             backgroundColor=list(image=paste0(getwd(),"/img/",x,'.png')),align = "center")
                        
+<<<<<<< HEAD
                        # print(paste("wrkpng:",paste0(getwd(),"/img/",x,'.png')))
+=======
+                       print(paste("wrkpng:",paste0(getwd(),"/img/",x,'.png')))
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
                      })
                      
                      df_LPI$LPI_Category <- gsub(" ", "", df_LPI$LPI_Category)
@@ -309,7 +315,32 @@ LPI_server <-
                        
                      }) %>% bindCache( reporter())
                    
+<<<<<<< HEAD
                    return(lpi_graph)
+=======
+
+                   observe(
+                     {
+                       # if (nrow(df_Logistic_Performance_Index())>0)
+                       # {
+                       # shinyjs::show(id = "LPIBox")
+                       # }
+                       # shinyjs::hide(id = "LPIBox")
+                       if (nrow(df_Logistic_Performance_Index())==0)
+                       {
+                         shinyjs::hideElement(id = "LPIBox")
+                       } 
+                       else
+                       {
+                         shinyjs::showElement(id = "LPIBox")
+                       }
+                     
+
+                     }
+                   )
+                   
+                   return(df_Logistic_Performance_Index)
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
                    
                    
                  })}

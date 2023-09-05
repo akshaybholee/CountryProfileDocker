@@ -53,12 +53,20 @@ reporter_download_server <- function(id) {
   
 }
 
+<<<<<<< HEAD
 download_server <- function(id, reporter_iso_sel, tradefacilitation) {
+=======
+download_server <- function(id, reporter_iso_sel, tradefacilitation, LPI, reporter,
+                            agreement,
+                            services,
+                            serviceperf) {
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
   moduleServer( id,
                 function(input, output, session){
                   
                   observeEvent(input$download,
                     {
+<<<<<<< HEAD
               
                       screenshot(selector = "#demographic",  filename = "demographic", server_dir = "./ReportImg", download = FALSE)
                       screenshot(selector = "#Macroeconomic-Boxheader",  filename = "macroheader", server_dir = "./ReportImg", download = FALSE)
@@ -71,6 +79,28 @@ download_server <- function(id, reporter_iso_sel, tradefacilitation) {
                       screenshot(selector = "#agreement-TR",  filename = "agreement", server_dir = "./ReportImg", download = FALSE)
                       screenshot(selector = "#tradeinservices-ServicesBox2",  filename = "tradeinservices", server_dir = "./ReportImg", download = FALSE)
                       screenshot(selector = "#servicesperformance-SPBox",  filename = "servicesperformance", server_dir = "./ReportImg", download = FALSE)
+=======
+                      progress <- shiny::Progress$new()
+                      # Make sure it closes when we exit this reactive, even if there's an error
+                     
+                      on.exit(progress$close())
+                      progress$set(message = "Downloading report...", value = 0)
+              
+                      screenshot(selector = "#demographic",  filename = "demographic", server_dir = "./ReportImg", download = FALSE)
+                      screenshot(selector = "#Boxheader",  filename = "macroheader", server_dir = "./ReportImg", download = FALSE)
+                      screenshot(selector = "#Boxcharts",  filename = "macrochart", server_dir = "./ReportImg", download = FALSE)
+                      screenshot(selector = "#titleti",  filename = "titleti", server_dir = "./ReportImg", download = FALSE)
+                      screenshot(selector = "#treemapbar",  filename = "tradeingoods", server_dir = "./ReportImg", download = FALSE)
+                      screenshot(selector = "#tradeperformance",  filename = "tradeperformance", server_dir = "./ReportImg", download = FALSE)
+                      screenshot(selector = "#LPI-LPIBox",  filename = "LPI", server_dir = "./ReportImg", download = FALSE)
+                      screenshot(selector = "#titlebilateral",  filename = "bilateralhead", server_dir = "./ReportImg", download = FALSE)
+                      screenshot(selector = "#bilateralchord",  filename = "bilateralchord", server_dir = "./ReportImg", download = FALSE)
+                      screenshot(selector = "#agreement-TR",  filename = "agreement", server_dir = "./ReportImg", download = FALSE)
+                      screenshot(selector = "#tradeinservices-ServicesBox",  filename = "tradeinservicestitle", server_dir = "./ReportImg", download = FALSE)
+                      screenshot(selector = "#tradeinservices-ServicesBox2",  filename = "tradeinservices", server_dir = "./ReportImg", download = FALSE)
+                      screenshot(selector = "#servicesperformance-SPBox",  filename = "servicesperformance", server_dir = "./ReportImg", download = FALSE)
+                      screenshot(selector = "#Digital-Boxheader",  filename = "digitalheader", server_dir = "./ReportImg", download = FALSE)
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
                       screenshot(selector = "#digital",  filename = "digital", server_dir = "./ReportImg", download = FALSE)
                       screenshot(selector = "#tradefacilitation-DFTBox",  filename = "tradefacilitation", server_dir = "./ReportImg", download = FALSE)
                       
@@ -83,14 +113,27 @@ download_server <- function(id, reporter_iso_sel, tradefacilitation) {
               
                   output$download1 <- downloadHandler(
              
+<<<<<<< HEAD
                     
+=======
+                  
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
                       filename =  "new_report.pdf",
                       content = function(file) {
                         withProgress(message = 'Downloading report...', {
                         
                         # tempReport <- normalizePath('report.Rmd')
                         # file.copy("myRmarkdown.Rmd", tempReport, overwrite = TRUE)
+<<<<<<< HEAD
                         params <- list(tradefacilitation =tradefacilitation()
+=======
+                        params <- list(tradefacilitation =tradefacilitation(),
+                                       reporter = reporter(),
+                                       LPI = LPI(),
+                                       agreement = agreement(),
+                                       services = services(),
+                                       serviceperf = serviceperf()
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
                         )
                         # html_fn <-
                           # rmarkdown::render(tempReport
@@ -100,9 +143,16 @@ download_server <- function(id, reporter_iso_sel, tradefacilitation) {
                           
                           rmarkdown::render("report.Rmd", output_format = "pdf_document", output_file = file,  params = params,
                                             envir = new.env(parent = globalenv()))
+<<<<<<< HEAD
                         
                 
 
+=======
+                          Sys.sleep(1)
+                          incProgress(1/3, detail = "")
+                          Sys.sleep(1)
+                          incProgress(1/3, detail = "Complete")
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
                         # pagedown::chrome_print(html_fn, file)
                       })
                       }

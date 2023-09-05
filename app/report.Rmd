@@ -1,4 +1,5 @@
 ---
+<<<<<<< HEAD
 output:
   # html_document: default
   pdf_document: default
@@ -20,16 +21,73 @@ knitr::opts_chunk$set( echo = FALSE, fig.retina = 1)
 ```{r, figures-side1,  out.width="100%", echo=FALSE}
  # plot_1()
 
+=======
+title: |
+    |
+    | \Huge Country Profile
+    |
+    | \normalsize Get access to trade data, business indicators, coupled with development and country performance data.
+    |
+    |
+    | \Huge `r params$reporter`
+    |
+    |
+date: "`r format(Sys.time(), '%d %B %Y')`"
+params:
+  tradefacilitation: 'NULL'
+  reporter: 'NULL'
+  LPI: 'NULL'
+  agreement: 'NULL'
+  services: 'NULL'
+  serviceperf: 'NULL'
+output:
+  html_document:
+    df_print: paged
+  pdf_document:
+    latex_engine: xelatex
+    keep_tex: yes
+    includes:
+      in_header: header.tex
+papersize: a4
+header-includes:
+- \usepackage{fontspec}
+- \setmainfont{Calibri}
+- \usepackage{titling}
+- \setlength{\droptitle}{-2.2in}
+- \pagenumbering{gobble}
+- \pretitle{\begin{center}\noindent\hspace*{-2.55cm}\includegraphics[width = \paperwidth, height = 16cm ,keepaspectratio=FALSE]{front.png}\\[\bigskipamount]}
+- \posttitle{\end{center}}
+---
+\newpage
+\pagenumbering{arabic} 
+
+```{r setup, include=FALSE}
+# options(tinytex.verbose = TRUE)
+knitr::opts_chunk$set( echo = FALSE, fig.retina = 2)
+```
+
+
+\newpage
+
+```{r, figures-side1,  out.width="100%",results='asis', echo=FALSE}
+ # plot_1()
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
 knitr::include_graphics("ReportImg/demographic.png")
 cat("  \n") 
 knitr::include_graphics("ReportImg/macroheader.png")
 cat("  \n") 
 knitr::include_graphics("ReportImg/macrochart.png")
+<<<<<<< HEAD
 cat("  \n") 
+=======
+cat("  \n\\pagebreak\n") 
+knitr::include_graphics("ReportImg/titleti.png")
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
 knitr::include_graphics("ReportImg/tradeingoods.png")
 cat("  \n") 
 knitr::include_graphics("ReportImg/tradeperformance.png")
 cat("  \n") 
+<<<<<<< HEAD
 knitr::include_graphics("ReportImg/LPI.png")
 cat("  \n") 
 # knitr::include_graphics("ReportImg/bilateralhead.png")
@@ -41,6 +99,36 @@ knitr::include_graphics("ReportImg/tradeinservices.png")
 cat("  \n") 
 knitr::include_graphics("ReportImg/servicesperformance.png")
 cat("  \n") 
+=======
+if(nrow(params$LPI) > 0)
+{
+knitr::include_graphics("ReportImg/LPI.png")
+}
+cat("  \n\\pagebreak\n")
+
+knitr::include_graphics("ReportImg/bilateralhead.png")
+knitr::include_graphics("ReportImg/bilateralchord.png")
+cat("  \n") 
+if(nrow(params$agreement) > 0)
+{
+knitr::include_graphics("ReportImg/agreement.png")
+}
+cat("  \n\\pagebreak\n") 
+
+if(nrow(params$services) > 0)
+{
+knitr::include_graphics("ReportImg/tradeinservicestitle.png")
+knitr::include_graphics("ReportImg/tradeinservices.png")
+}
+cat("  \n") 
+if(nrow(params$serviceperf) > 0)
+{
+knitr::include_graphics("ReportImg/servicesperformance.png")
+}
+cat("  \n\\pagebreak\n") 
+
+knitr::include_graphics("ReportImg/digitalheader.png")
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
 knitr::include_graphics("ReportImg/digital.png")
 cat("  \n") 
 if(nrow(params$tradefacilitation) > 0)
@@ -51,6 +139,15 @@ knitr::include_graphics("ReportImg/tradefacilitation.png")
 
 # params$plot_1
 # params$plot_2
+<<<<<<< HEAD
  
 
+=======
+```
+
+```{r figures-side2,  out.width = "100%", echo=FALSE, results = "asis"}
+cat("\\newgeometry{left=0.02cm,right=0cm,top=0.03cm,bottom=0cm}")
+knitr::include_graphics("contact.jpg")
+cat("\\restoregeometry")
+>>>>>>> 58178a5aa4dd0da750c0d321ca6f6bf2e3d2a3e4
 ```
