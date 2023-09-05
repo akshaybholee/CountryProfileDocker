@@ -426,5 +426,7 @@ trade_facilitation_server <-
                      
                    }) %>% bindCache(reporter())
                    
+                   return(df_trade_facilitation)
+                   
                  })
   }

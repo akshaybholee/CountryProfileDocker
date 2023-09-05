@@ -1,0 +1,56 @@
+---
+output:
+  # html_document: default
+  pdf_document: default
+params:
+  tradefacilitation: 'NULL'
+# header-includes:
+#   - \begin{document}
+# - \graphicspath{ {ReportImg/} }
+# - \includegraphics[width = 0.1\textwidth]{logo.png}
+# - \end{document}
+#   plot_2: 'NULL'
+---
+```{r setup, include=FALSE}
+options(tinytex.verbose = TRUE)
+knitr::opts_chunk$set( echo = FALSE, fig.retina = 1)
+
+```
+
+```{r, figures-side1,  out.width="100%", echo=FALSE}
+ # plot_1()
+
+knitr::include_graphics("ReportImg/demographic.png")
+cat("  \n") 
+knitr::include_graphics("ReportImg/macroheader.png")
+cat("  \n") 
+knitr::include_graphics("ReportImg/macrochart.png")
+cat("  \n") 
+knitr::include_graphics("ReportImg/tradeingoods.png")
+cat("  \n") 
+knitr::include_graphics("ReportImg/tradeperformance.png")
+cat("  \n") 
+knitr::include_graphics("ReportImg/LPI.png")
+cat("  \n") 
+# knitr::include_graphics("ReportImg/bilateralhead.png")
+knitr::include_graphics("ReportImg/bilateralchord.png")
+cat("  \n") 
+knitr::include_graphics("ReportImg/agreement.png")
+cat("  \n") 
+knitr::include_graphics("ReportImg/tradeinservices.png")
+cat("  \n") 
+knitr::include_graphics("ReportImg/servicesperformance.png")
+cat("  \n") 
+knitr::include_graphics("ReportImg/digital.png")
+cat("  \n") 
+if(nrow(params$tradefacilitation) > 0)
+{
+knitr::include_graphics("ReportImg/tradefacilitation.png")
+}
+
+
+# params$plot_1
+# params$plot_2
+ 
+
+```

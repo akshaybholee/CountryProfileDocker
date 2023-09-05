@@ -80,6 +80,37 @@ RUN install2.r --error \
 RUN install2.r --error \
                 spatialEco
 
+RUN Rscript -e "install.packages('knitr')"
+RUN Rscript -e "install.packages('shinyscreenshot')"
+RUN Rscript -e "install.packages('rmarkdown')"
+
+## Install LaTeX
+## Source: https://registry.hub.docker.com/u/rocker/hadleyverse/dockerfile/
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+         ghostscript \
+    imagemagick \
+    lmodern \
+    texlive-fonts-recommended \
+    texlive-humanities \
+    texlive-latex-extra \
+    texinfo \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/ \
+  && cd /usr/share/texlive/texmf-dist \
+  && wget http://mirrors.ctan.org/install/fonts/inconsolata.tds.zip \
+  && unzip inconsolata.tds.zip \
+  && rm inconsolata.tds.zip \
+  && echo "Map zi4.map" >> /usr/share/texlive/texmf-dist/web2c/updmap.cfg \
+  && mktexlsr \
+  && updmap-sys
+
+## Install Pandoc
+
+RUN wget https://github.com/jgm/pandoc/releases/download/1.15.1/pandoc-1.15.1-1-amd64.deb
+RUN dpkg -i pandoc-1.15.1-1-amd64.deb
+
+
 RUN echo "local(options(shiny.port = as.numeric(Sys.getenv('PORT')), shiny.host = '0.0.0.0'))" > /usr/lib/R/etc/Rprofile.site
 
 RUN addgroup --system app \
